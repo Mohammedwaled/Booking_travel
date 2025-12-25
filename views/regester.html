@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel World - الحساب الشخصي</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login-forms.css">
+</head>
+<body>
+
+    <div class="background-image"></div>
+
+    <div class="login-box">
+        <h2>Travel World</h2>
+        
+        <div id="register-section">
+            <p>إنشاء حساب جديد في نظام الحجز</p>
+            <form action="../app/controllers/public/index.php" method="POST" id="registerForm">
+                <input type="text" name="full_name" placeholder="الاسم بالكامل" required>
+                <input type="email" name="email" placeholder="البريد الإلكتروني" required
+                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                       title="من فضلك أدخل بريد إلكتروني صحيح يحتوي على @ ونطاق صالح">
+                <input type="password" name="password" placeholder="كلمة المرور" required>
+                
+                <select name="role">
+                    <option value="user">مسافر (User)</option>
+                    <option value="agent">وكيل سفر (Agent)</option>
+                </select>
+                
+                <button type="submit" name="register_btn">إنشاء حساب</button>
+            </form>
+            <span class="toggle-link" onclick="toggleAuth()">لديك حساب بالفعل؟ سجل دخولك</span>
+        </div>
+
+        <div id="login-section" class="hidden">
+            <p>مرحباً بك مرة أخرى - تسجيل الدخول</p>
+            <form action="../app/controllers/public/index.php" method="POST" id="registerForm">
+                <input type="email" name="email" placeholder="البريد الإلكتروني" required
+                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                       title="من فضلك أدخل بريد إلكتروني صحيح يحتوي على @ ونطاق صالح">
+                <input type="password" name="password" placeholder="كلمة المرور" required>
+                
+                <button type="submit" name="login_btn">دخول</button>
+            </form>
+            <span class="toggle-link" onclick="toggleAuth()">ليس لديك حساب؟ سجل الآن</span>
+        </div>
+    </div>
+
+    <script src="../app/controllers/js/login.js"></script>
+    <script src="../app/controllers/js/login-forms.js"></script>
+
+</body>
+</html>

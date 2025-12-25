@@ -1,0 +1,39 @@
+
+        /* التنسيق الأساسي (نفس الستايل السابق) */
+        :root { --primary-color: #2ecc71; --error-color: #ff4d4d; }
+        body { 
+            height: 100vh; display: flex; justify-content: center; align-items: center; 
+            overflow: hidden; background: #000; font-family: 'Poppins', sans-serif;
+        }
+        .background-image {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?q=80&w=2000") no-repeat center center;
+            background-size: cover; z-index: -1; animation: zoomInfinite 20s infinite alternate;
+        }
+        @keyframes zoomInfinite { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        .login-box {
+            width: 400px; padding: 40px; background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px; color: #fff; text-align: center;
+        }
+
+        .input-group { margin-bottom: 15px; text-align: right; }
+        .input-group input {
+            width: 100%; padding: 12px 20px; background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 30px;
+            color: #fff; outline: none;
+        }
+
+        /* ستايل رسائل الخطأ */
+        .error-msg {
+            color: var(--error-color); font-size: 0.8em; margin-top: 5px;
+            display: none; padding-right: 15px;
+        }
+
+        .login-btn {
+            width: 100%; padding: 12px; border-radius: 30px; border: none;
+            background: var(--primary-color); color: #fff; font-weight: 600;
+            cursor: pointer; margin-top: 10px;
+        }
+    

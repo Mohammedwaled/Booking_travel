@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الحجز | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #f39c12; --success: #27ae60; --dark: #2d3436; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: #f4f7f6; padding-top: 50px; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* كارت التأكيد الرئيسي */
+        .confirm-card { 
+            background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid var(--primary);
+        }
+
+        .header-success { background: #fffdf9; padding: 40px; text-align: center; border-bottom: 1px dashed #ddd; }
+        .header-success i { font-size: 4rem; color: var(--success); margin-bottom: 15px; }
+
+        .booking-details { padding: 40px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; }
+        .detail-row span:first-child { color: #777; font-weight: bold; }
+        .detail-row span:last-child { color: var(--dark); font-weight: 800; }
+
+        .total-box { 
+            background: var(--dark); color: white; padding: 20px; 
+            border-radius: 12px; margin-top: 25px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .total-box h2 { color: var(--primary); }
+
+        .payment-note { 
+            background: #e8f4fd; border-right: 5px solid #3498db; padding: 15px; 
+            margin-top: 20px; border-radius: 5px; font-size: 0.9rem;
+        }
+
+        /* أزرار التحكم */
+        .actions { display: flex; gap: 15px; margin-top: 30px; }
+        .btn { 
+            flex: 1; padding: 15px; border: none; border-radius: 10px; 
+            font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s;
+        }
+        .btn-print { background: #eee; color: var(--dark); }
+        .btn-home { background: var(--primary); color: white; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        @media print { .actions, .payment-note { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="confirm-card">
+        <div class="header-success">
+            <i class="fas fa-check-circle"></i>
+            <h1>تم تأكيد طلب الحجز!</h1>
+            <p>رقم الحجز الخاص بك: <strong style="color:var(--primary)">#BT-99420</strong></p>
+        </div>
+
+        <div class="booking-details">
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-info-circle"></i> تفاصيل رحلتك</h3>
+            
+            <div class="detail-row">
+                <span>الوجهة:</span>
+                <span id="display-city">---</span>
+            </div>
+            <div class="detail-row">
+                <span>التاريخ:</span>
+                <span>25 ديسمبر 2025</span>
+            </div>
+            <div class="detail-row">
+                <span>عدد الأفراد:</span>
+                <span>2 بالغين</span>
+            </div>
+            <div class="detail-row">
+                <span>حالة الدفع:</span>
+                <span style="color: #e67e22;">دفع عند الوصول (Cash)</span>
+            </div>
+
+            <div class="total-box">
+                <div>
+                    <p>المبلغ الإجمالي المطلوب</p>
+                    <small>(شامل الضرائب والرسوم)</small>
+                </div>
+              <h3>إجمالي التكلفة: <span id="display-price">جاري التحميل...</span></h3>
+<p>اسم الرحلة: <span id="display-title">---</span></p>
+            </div>
+
+            <div class="payment-note">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>ملاحظة:</strong> يرجى الاحتفاظ برقم الحجز وإظهاره للمندوب عند نقطة التجمع لبدء الرحلة.
+            </div>
+
+            <div class="actions">
+                <a href="javascript:window.print()" class="btn btn-print"><i class="fas fa-print"></i> طباعة التذكرة</a>
+                <a href="index.html" class="btn btn-home">العودة للرئيسية</a>
+            </div>
+        </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 30px; color: #888; font-size: 0.8rem;">
+        سيتم إرسال نسخة من تفاصيل الحجز إلى بريدك الإلكتروني المسجل لدينا.
+    </p>
+</div>
+
+
+<script>
+    // 1. جلب البيانات من الرابط (URL Parameters)
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
+    const price = urlParams.get('price');
+    const city = urlParams.get('city');
+
+    // 2. عرض البيانات في الصفحة بدلاً من الأرقام الثابتة
+    if (title && price) {
+        document.getElementById('display-title').innerText = title;
+        
+        // تحويل السعر حسب العملة المختارة
+        const currency = localStorage.getItem('selectedCurrency') || 'EGP';
+        const priceNum = parseFloat(price);
+        const symbol = currency === 'USD' ? '$' : 'ج.م';
+        const convertedPrice = currency === 'USD' ? (priceNum / 50).toFixed(2) : priceNum;
+        document.getElementById('display-price').innerText = convertedPrice + ' ' + symbol;
+        
+        // تحديد المدينة من العنوان
+        if (city) {
+            document.getElementById('display-city').innerText = city;
+        } else if (title.includes('قاهرة') || title.includes('القاهرة')) {
+            document.getElementById('display-city').innerText = 'القاهرة';
+        } else if (title.includes('أقصر') || title.includes('الأقصر') || title.includes('Luxor')) {
+            document.getElementById('display-city').innerText = 'الأقصر';
+        } else if (title.includes('جيزة') || title.includes('الجيزة') || title.includes('Giza')) {
+            document.getElementById('display-city').innerText = 'الجيزة';
+        } else if (title.includes('دهب') || title.includes('Dahab')) {
+            document.getElementById('display-city').innerText = 'دهب';
+        } else if (title.includes('إسكندرية') || title.includes('Alexandria')) {
+            document.getElementById('display-city').innerText = 'الإسكندرية';
+        } else {
+            document.getElementById('display-city').innerText = title;
+        }
+    } else {
+        // لو مفيش بيانات مبعوثة (مثلاً دخل الصفحة مباشرة)
+        document.getElementById('display-price').innerText = "يرجى اختيار رحلة أولاً";
+    }
+</script>
+
+
+</body>
+</html>

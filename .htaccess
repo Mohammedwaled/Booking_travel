@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# السماح بالوصول المباشر للملفات الموجودة فعلياً (PHP, HTML, CSS, JS, Images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# السماح بالوصول المباشر للمجلدات الموجودة فعلياً
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# توجيه جميع الطلبات الأخرى إلى app/controllers/public/index.php
+RewriteRule ^(.*)$ app/controllers/public/index.php [QSA,L]
+

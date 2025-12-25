@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشف الجيزة | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/details-common.css">
+    <style>
+        :root { --primary: #f39c12; --text-dark: #2d3436; }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/giza-hero.jpeg'); /* تأكد من وجود صورة الهيرو */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        /* ستايل عرض بيانات الوكيل */
+        .db-info-card {
+            background: #fff9f0;
+            padding: 20px;
+            border-right: 5px solid var(--primary);
+            margin: 20px auto;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div>
+            <h1 id="title" style="font-size: 3.5rem;">عظمة الأهرامات</h1>
+            <p>اكتشف أسرار الحضارة المصرية في قلب الجيزة</p>
+            <p>الوكيل: <span id="agent">...</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="db-info-card">
+            <h2>تفاصيل عرض الرحلة المعتمد</h2>
+            <p id="details">جاري تحميل وصف الرحلة...</p>
+            <p>السعر المتاح الآن: <span id="price" style="font-size: 1.4rem; color: #d35400; font-weight: bold;">--</span> ج.م</p>
+            
+            <form action="../app/controllers/public/index.php" method="POST">
+                <input type="hidden" name="package_id" id="pkg_id">
+                <button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); border: none; padding: 12px 25px; cursor: pointer; color: white; border-radius: 5px; font-weight: bold;">
+                    <i class="fas fa-calendar-check"></i> احجز هذا العرض الآن
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="section-title">برامج سياحية (أماكن الزيارة)</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/ابو الهول.jpeg" alt="Pyramids"></div>
+            <div class="content">
+                <h3>جولة الأهرامات وأبو الهول</h3>
+                <p>رحلة تشمل زيارة الهرم الأكبر، خفرع، منقرع ومنطقة البانوراما.</p>
+                <div class="price">800 ج.م</div>
+                <a href="booking-confirm.html" class="btn">حجز الجولة الآن</a>
+            </div>
+        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/سقاره.jpeg" alt="Saqqara"></div>
+            <div class="content">
+                <h3>مجمع سقارة وميت رهينة</h3>
+                <p>استكشف هرم زوسر المدرج وأول عاصمة لمصر القديمة (منف).</p>
+                <div class="price">600 ج.م</div>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">أفضل الفنادق في الجيزة</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" alt="Mena House"></div>
+            <div class="content">
+                <div style="color:#f1c40f"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Marriott Mena House</h3>
+                <p>إقامة ملكية تاريخية تطل مباشرة على الهرم الأكبر.</p>
+                <div class="price">16,000 ج.م <small>/ليلة</small></div>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/2034330/pexels-photo-2034330.jpeg" alt="Steigenberger Pyramids"></div>
+          <div class="db-info-card">
+    <h2>تفاصيل البرنامج</h2>
+    <p id="details">...</p>
+    <p>السعر: <span id="price">--</span> ج.م</p>
+
+    <form action="../app/controllers/public/index.php" method="POST">
+        <input type="hidden" name="package_id" id="pkg_id">
+        <button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>
+    </form>
+</div>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2>قالوا عن الجيزة</h2>
+        <div class="review-card">
+            <img src="https://i.pravatar.cc/100?u=8" alt="User">
+            <div>
+                <h4>سارة أحمد</h4>
+                <p style="color: #f1c40f;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                <p>"تجربة ركوب الجمل وقت الغروب أمام الأهرامات لا تُنسى!"</p>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>© 2025 Booking Travel - Giza Guide</p></footer>
+
+    <script src="../app/controllers/js/currency.js"></script>
+    <script src="../app/controllers/js/city-details.js"></script>
+    <script>
+        function loadGizaData() {
+            loadCityData(4, {
+                titleId: 'title',
+                agentId: 'agent',
+                priceId: 'price',
+                detailsId: 'details',
+                pkgId: 'pkg_id'
+            });
+        }
+        window.onload = loadGizaData;
+    </script>
+</body>
+</html>

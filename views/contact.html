@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #f39c12; --dark: #2d3436; --gray: #636e72; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: #f4f7f6; color: var(--dark); }
+
+        /* Navigation */
+        header { background: white; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--dark); }
+        .logo span { color: var(--primary); }
+
+        /* Contact Hero */
+        .contact-hero { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.pexels.com/photos/33999/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260');
+            height: 300px; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center;
+        }
+
+        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+
+        /* Info Sidebar */
+        .info-sidebar { background: var(--primary); color: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .info-item { margin-bottom: 25px; display: flex; gap: 15px; align-items: flex-start; }
+        .info-item i { font-size: 1.2rem; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; }
+        .info-item h4 { margin-bottom: 5px; }
+
+        /* Contact Form */
+        .contact-form { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; 
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 5px rgba(243, 156, 18, 0.3); }
+        
+        .submit-btn { 
+            background: var(--primary); color: white; border: none; padding: 15px 30px; 
+            border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; 
+        }
+        .submit-btn:hover { background: #e67e22; transform: translateY(-2px); }
+
+        /* Map */
+        .map-container { margin: 50px 8%; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 400px; }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 30px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">BOOKING<span>TRAVEL</span></a>
+        <nav><a href="index.html" style="text-decoration:none; color:var(--dark); font-weight:bold;">الرجوع للرئيسية</a></nav>
+    </header>
+
+    <div class="contact-hero">
+        <div>
+            <h1>يسعدنا دائماً تواصلك معنا</h1>
+            <p>نحن هنا للإجابة على جميع استفساراتك حول رحلتك القادمة</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="info-sidebar">
+            <h2 style="margin-bottom: 30px;">معلومات التواصل</h2>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>العنوان</h4>
+                    <p>123 شارع التحرير، وسط البلد، القاهرة، مصر</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>اتصل بنا</h4>
+                    <p>+20 123 456 7890</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>البريد الإلكتروني</h4>
+                    <p>info@bookingtravel.com</p>
+                </div>
+            </div>
+            <div style="margin-top: 50px; display: flex; gap: 15px; font-size: 1.5rem;">
+                <i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2 style="margin-bottom: 25px;">أرسل لنا رسالة</h2>
+            <form id="contactForm" action="../app/controllers/public/index.php" method="POST">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" name="name" placeholder="أدخل اسمك هنا" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>الموضوع</label>
+                    <input type="text" name="subject" placeholder="بخصوص أي رحلة؟">
+                </div>
+                <div class="form-group">
+                    <label>رسالتك</label>
+                    <textarea name="message" rows="5" placeholder="اكتب استفسارك بالتفصيل هنا..." required></textarea>
+                </div>
+                <button type="submit" name="submit_contact" class="submit-btn">إرسال الرسالة</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d110502.60389560416!2d31.18842381283594!3d30.05948381032295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296efaaad0!2sCairo%2C%20Egypt!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+
+    <footer>
+        <p>© 2025 Booking Travel Egypt - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+    // التحقق من البيانات قبل الإرسال (اختياري - يمكن إزالته)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        const name = this.querySelector('input[name="name"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+        
+        if (name.length < 3) {
+            e.preventDefault();
+            alert("⚠️ الاسم يجب أن يكون أكثر من 3 أحرف");
+            return false;
+        }
+        
+        if (message.length < 10) {
+            e.preventDefault();
+            alert("⚠️ الرسالة قصيرة جداً، يرجى توضيح استفسارك");
+            return false;
+        }
+    });
+    </script>
+</body>
+</html>

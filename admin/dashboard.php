@@ -1,0 +1,73 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'agent') {
+    header("Location: ../views/regester.html#login");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم الوكيل | Travel Agent Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../views/css/admin-style.css">
+    <link rel="stylesheet" href="../views/css/admin-dashboard.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>AGENT PANEL</h2>
+        <a href="#" class="nav-item active" style="background: var(--primary); color: white; border-radius: 8px;">
+            <i class="fas fa-plus-circle"></i> إضافة عرض جديد
+        </a>
+        <a href="#" class="nav-item"><i class="fas fa-box"></i> عروضي الحالية</a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-envelope"></i> الحجوزات الواردة <span id="bookingCount" class="badge" style="background:red; color:white;">0</span>
+        </a>
+        <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 10px 0;">
+        <a href="../views/index.html" class="nav-item"><i class="fas fa-home"></i> العودة للموقع</a>
+        <a href="../app/controllers/auth.php?logout=1" class="nav-item" style="color:var(--danger)"><i class="fas fa-sign-out-alt"></i> خروج</a>
+    </div>
+
+    <div class="main-content" style="margin-right: 280px; padding: 40px; width: calc(100% - 280px);">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1>إضافة عرض سياحي جديد</h1>
+            <div class="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notifBadge" style="background:red; color:white; position:absolute; top:-5px; right:-5px; border-radius:50%; padding:2px 6px; font-size:0.7rem;">0</span>
+            </div>
+        </header>
+
+        <div class="table-card"><form action="../app/controllers/public/index.php" method="POST"><div class="form-group">
+        <label>اسم الرحلة</label>
+        <input type="text" name="title" required> </div>
+
+    <div class="form-group">
+        <label>المحافظة</label>
+        <select name="city_id">
+            <option value="1">القاهرة</option>
+            <option value="2">الأقصر</option>
+            <option value="3">دهب</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>السعر</label>
+        <input type="number" name="price" required>
+    </div>
+
+    <div class="form-group">
+        <label>التفاصيل</label>
+        <textarea name="details" rows="5"></textarea>
+    </div>
+
+    <button type="submit" name="add_package_btn" class="submit-btn">إرسال للمراجعة</button>
+</form>
+        </div>
+    </div>
+
+    <script src="../app/controllers/js/agent-actions.js"></script>
+</body>
+</html>
+

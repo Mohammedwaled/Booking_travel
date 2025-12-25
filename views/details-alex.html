@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشف الإسكندرية | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/details-common.css">
+    
+    <style>
+        :root { 
+            --primary: #2980b9; /* أزرق بحري كلاسيكي */
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/img/alex-hero.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        /* كارت بيانات الداتابيز الموحد */
+        .db-info-card {
+            background: #e3f2fd;
+            padding: 20px;
+            border-right: 5px solid var(--primary);
+            margin: 20px auto;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div>
+            <h1 id="title" style="font-size: 3rem;">عروس البحر الأبيض المتوسط</h1>
+            <p>الوكيل المسؤول: <span id="agent">...</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="db-info-card">
+            <h2 style="color: var(--primary);">تفاصيل رحلة الإسكندرية</h2>
+            <p id="details">جاري تحميل وصف البرنامج السياحي...</p>
+            <p>السعر المعتمد: <span id="price" style="font-size: 1.4rem; color: #1565c0; font-weight: bold;">--</span> ج.م</p>
+            
+            <form action="../app/controllers/public/index.php" method="POST">
+                <input type="hidden" name="package_id" id="pkg_id">
+                <button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); border: none; padding: 12px 25px; cursor: pointer; color: white; border-radius: 5px; font-weight: bold;">
+                    <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="section-title">أماكن يجب زيارتها</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/قايتباي.jpeg" alt="Citadel"></div>
+            <div class="content">
+                <h3>قلعة قايتباي</h3>
+                <p>جولة داخل الحصن الدفاعي التاريخي والاستمتاع بمشهد البحر.</p>
+                <div class="price">300 ج.م</div>
+<a href="booking-confirm.html?title=زيارة قلعة قايتباي&price=300" class="btn">حجز زيارة</a>        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/مكتبه.jpeg" alt="Library"></div>
+            <div class="content">
+                <h3>مكتبة الإسكندرية</h3>
+                <p>زيارة منارة العلم الحديثة والمتاحف الموجودة بداخلها.</p>
+                <div class="price">200 ج.م</div>
+<a href="booking-confirm.html?title=زيارة مكتبة الإسكندرية&price=200" class="btn">حجز زيارة</a>            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">فنادق الإسكندرية الفاخرة</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg" alt="Four Seasons Alex"></div>
+            <div class="content">
+                <h3>Four Seasons San Stefano</h3>
+                <p>أرقى فندق في المدينة مع شاطئ خاص وخدمات ملكية.</p>
+                <div class="price">14,500 ج.م</div>
+<a href="booking-confirm.html?title=فندق فورسيزونز الإسكندرية&price=14500" class="btn btn-hotel">احجز الآن</a>            </div>
+        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" alt="Cecil Hotel"></div>
+            <div class="content">
+                <h3>Steigenberger Cecil Hotel</h3>
+                <p>فندق كلاسيكي عريق في قلب محطة الرمل يطل على الميناء.</p>
+                <div class="price">4,800 ج.م</div>
+<a href="booking-confirm.html?title=فندق شتاينبرجر سيسيل&price=4800" class="btn btn-hotel">احجز الآن</a>            </div>
+        </div>
+    </div>
+
+    <footer><p>© 2025 Booking Travel - Alexandria Guide</p></footer>
+
+  <script>
+function loadData() {
+    const cityId = 2; // رقم الإسكندرية في قاعدة البيانات
+    const pkgIdInput = document.getElementById('pkg_id');
+    
+    if (pkgIdInput) pkgIdInput.value = cityId;
+
+    fetch('../app/controllers/public/index.php/api/cities/' + cityId)
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(pkg => {
+        if(pkg && !pkg.error) {
+            // تحديث العناوين والبيانات من الداتابيز
+            if(document.getElementById('title')) document.getElementById('title').innerText = pkg.title;
+            if(document.getElementById('agent')) document.getElementById('agent').innerText = pkg.agent_name;
+            if(document.getElementById('price')) {
+                const price = pkg.price || 0;
+                const currency = localStorage.getItem('selectedCurrency') || 'EGP';
+                const symbol = currency === 'USD' ? '$' : 'ج.م';
+                const convertedPrice = currency === 'USD' ? (price / 50).toFixed(2) : price;
+                document.getElementById('price').innerText = convertedPrice + ' ' + symbol;
+                document.getElementById('price').setAttribute('data-price-egp', price);
+            }
+            if(document.getElementById('details')) document.getElementById('details').innerText = pkg.details;
+            
+            // تحديث زر الحجز الرئيسي ليرسل البيانات الصحيحة لصفحة التأكيد
+            const mainBookingBtn = document.querySelector('.db-info-card .btn');
+            // إذا كنت تريد الزر الكبير يفتح صفحة التأكيد مباشرة بدلاً من الفورم:
+            // mainBookingBtn.onclick = () => { window.location.href = `booking-confirm.html?title=${pkg.title}&price=${pkg.price}`; return false; };
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+        document.getElementById('details').innerText = "عذراً، تعذر تحميل تفاصيل الرحلة حالياً.";
+    });
+}
+
+window.onload = loadData;
+</script>
+</body>
+</html>

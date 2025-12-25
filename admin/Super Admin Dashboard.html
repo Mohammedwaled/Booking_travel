@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم المدير العام | Super Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../views/css/admin-style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>إدارة النظام</h2>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i> الإحصائيات العامة</a>
+        <a href="#" class="nav-item"><i class="fas fa-user-tie"></i> إدارة الوكلاء</a>
+        <a href="../views/index.html" class="nav-item"><i class="fas fa-home"></i> العودة للموقع</a>
+        <a href="../app/controllers/auth.php?logout=1" class="nav-item" style="color:var(--danger)"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+    </div>
+
+    <div class="content">
+        <h1>مرحباً أيها المدير! 👋</h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card"><h3>إجمالي الحجوزات</h3><p>1,240</p></div>
+            <div class="stat-card"><h3>أرباح الشهر</h3><p>450,000 ج.م</p></div>
+        </div>
+
+        <div class="table-card">
+            <h3>الطلبات الجديدة</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الوكيل</th>
+                        <th>العرض</th>
+                        <th>السعر</th>
+                        <th>الحالة</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="approvalTable">
+                    <tr>
+                        <td>سياحة تورز</td>
+                        <td>رحلة المنطاد</td>
+                        <td>2,500 ج.م</td>
+                        <td><span class="badge badge-pending">بانتظار المراجعة</span></td>
+                        <td>
+                            <button class="btn-action btn-approve" onclick="approve(this)">موافقة</button>
+                            <button class="btn-action btn-reject" onclick="reject(this)">رفض</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../app/controllers/js/admin-actions.js"></script>
+</body>
+</html>

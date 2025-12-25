@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشف دهب | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/details-common.css">
+    
+    <style>
+        :root { 
+            --primary: #008080; /* لون تركواز بحري */
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/img/dahab-hero.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        /* ستايل كارت بيانات الداتابيز */
+        .db-info-card {
+            background: #e0f2f1;
+            padding: 20px;
+            border-right: 5px solid var(--primary);
+            margin: 20px auto;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div>
+            <h1 id="title" style="font-size: 3rem;">جنة الغواصين والاسترخاء</h1>
+            <p>الوكيل المسؤول: <span id="agent">...</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="db-info-card">
+            <h2 style="color: var(--primary);">تفاصيل عرض "دهب" الحالي</h2>
+            <p id="details">جاري تحميل البرنامج السياحي من الداتابيز...</p>
+            <p>السعر الإجمالي للعرض: <span id="price" style="font-size: 1.4rem; color: #00695c; font-weight: bold;">--</span> ج.م</p>
+            
+            <form action="../app/controllers/public/index.php" method="POST">
+                <input type="hidden" name="package_id" id="pkg_id">
+                <button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); border: none; padding: 12px 25px; cursor: pointer; color: white; border-radius: 5px; font-weight: bold;">
+                    <i class="fas fa-check-circle"></i> تأكيد حجز الرحلة بالكامل
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="section-title">أنشطة ومغامرات</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/بلوهول.jpeg" alt="Blue Hole"></div>
+            <div class="content">
+                <h3>رحلة البلو هول (الثقب الأزرق)</h3>
+                <p>أشهر مكان للغطس في العالم مع غداء بدوي في الطبيعة.</p>
+                <div class="price">700 ج.م</div>
+                <a href="booking-confirm.html" class="btn">احجز المغامرة</a>
+            </div>
+        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="assets/img/وادي جني.jpeg" alt="Safari"></div>
+            <div class="content">
+                <h3>بيتش باجي في وادي جني</h3>
+                <p>مغامرة صحراوية بين الجبال وقت الغروب.</p>
+                <div class="price">450 ج.م</div>
+                <a href="booking-confirm.html" class="btn">احجز المغامرة</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">أفضل المنتجعات</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg" alt="Le Meridien"></div>
+            <div class="content">
+                <h3>Le Méridien Dahab</h3>
+                <p>تصميم معماري فريد يدمج بين الفخامة والطبيعة السيناوية.</p>
+                <div class="price">6,500 ج.م</div>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+        <div class="item-card">
+            <div class="img-container"><img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg" alt="Eco Lodge"></div>
+            <div class="content">
+                <h3>Coral Coast Hotel</h3>
+                <p>فندق هادئ لمحبي اليوجا والغطس بعيداً عن الصخب.</p>
+                <div class="price">2,800 ج.م</div>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+    </div>
+
+    <footer><p>© 2025 Booking Travel - Dahab Guide</p></footer>
+
+    <script src="../app/controllers/js/currency.js"></script>
+    <script src="../app/controllers/js/city-details.js"></script>
+    <script>
+        function loadDahabData() {
+            loadCityData(3, {
+                titleId: 'title',
+                agentId: 'agent',
+                priceId: 'price',
+                detailsId: 'details',
+                pkgId: 'pkg_id'
+            });
+        }
+        window.onload = loadDahabData;
+    </script>
+</body>
+</html>

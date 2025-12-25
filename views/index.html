@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Travel | Integrated System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<header>
+        <a href="regester.html" class="logo">BOOKING<span>TRAVEL</span></a>
+        
+    <nav class="main-nav">
+    <a href="index.html">الرئيسية</a>
+    <a href="#tours">الرحلات</a>
+    
+    <a href="admin/dashboard.php" id="agentLink" style="display: none; color: #f39c12;">لوحة تحكم الوكيل</a>
+    <a href="admin/Super%20Admin%20Dashboard.html" id="adminLink" style="display: none; color: #e74c3c;">لوحة تحكم الإدارة</a>
+    
+    <a href="contact.html">اتصل بنا</a>
+</nav>
+        <div class="nav-right">
+            <select class="currency-select" id="currency">
+                <option value="EGP">EGP (ج.م)</option>
+                <option value="USD">USD ($)</option>
+            </select>
+
+            <div class="auth-btns" id="authSection">
+                <a href="regester.html#login" class="btn-login">Login</a>
+                <a href="regester.html" class="btn-reg">Register</a>
+            </div>
+
+            <div class="user-profile" id="userProfile" onclick="simulateLogout()">
+                <span>Hi, <strong>Ahmed</strong></span>
+                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Profile">
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-wrapper">
+        <h1 style="font-size: 3.5rem; text-align: center;">Explore the Wonders of Egypt</h1>
+    </div>
+
+    <div class="search-wrapper">
+        <div class="search-item"><label>Where</label><input type="text" id="destInput" placeholder="Location..."></div>
+        <div class="search-item"><label>Date</label><input type="date" id="travelDate" min="2026-01-01" required></div>
+        <div class="search-item"><label>Travelers</label><input type="number" id="travelerCount" value="1" min="1" required></div>
+        <button class="search-btn" onclick="handleSearch()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="categories" id="filterBar">
+        <div class="cat-item active" data-cat="all"><i class="fas fa-th-large"></i><span>All</span></div>
+        <div class="cat-item" data-cat="beach"><i class="fas fa-umbrella-beach"></i><span>Beach</span></div>
+        <div class="cat-item" data-cat="history"><i class="fas fa-monument"></i><span>History</span></div>
+        <div class="cat-item" data-cat="safari"><i class="fas fa-shuttle-van"></i><span>Safari</span></div>
+    </div>
+
+<section class="section-padding" id="tours">
+    <div class="section-header">
+        <h2 style="font-size: 2.5rem; font-weight: 800;">اكتشف وجهاتنا السياحية</h2>
+        <p style="color: #666; margin-top: 10px;">افضل الاماكن السياحيه في مصر</p>
+    </div>
+    
+    <div class="grid" id="toursGrid">
+        
+        <div class="tour-card" data-category="history">
+            <div class="wishlist-heart" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+            <div class="img-container">
+                <img src="assets/img/giza.jpeg" alt="Giza Pyramids">
+            </div>
+            <div class="card-content">
+                <div class="rating"><i class="fas fa-star"></i> 5.0 (Greatest Wonder)</div>
+                <h3>أهرامات الجيزة</h3>
+                <p style="color:#777; font-size: 0.85rem;">رحلة عبر التاريخ لاستكشاف خوفو وخفرع ومنقرع وأبو الهول.</p>
+                <div class="card-footer">
+                    <span class="price-tag">$100</span>
+                    <a href="details-giza.html" class="details-link">استكشف المعالم <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-card" data-category="history">
+            <div class="wishlist-heart" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+            <div class="img-container">
+                <img src="assets/img/cairo.jpeg" alt="Old Cairo">
+            </div>
+            <div class="card-content">
+                <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                <h3>محافظة القاهرة</h3>
+                <p style="color:#777; font-size: 0.85rem;">عبق التاريخ في المعز والحسين وجولة نيلية ساحرة.</p>
+                <div class="card-footer">
+                    <span class="price-tag">$120</span>
+                    <a href="cairo-details.html" class="details-link">استكشف المعالم <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-card" data-category="beach">
+            <div class="wishlist-heart" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+            <div class="img-container">
+                <img src="assets/img/alex.jpeg" alt="Alexandria">
+            </div>
+            <div class="card-content">
+                <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                <h3>الاسكندريه</h3>
+                <p style="color:#777; font-size: 0.85rem;">قلعة قايتباي، المكتبة، والمنتزه مع أجمل إطلالة بحرية.</p>
+                <div class="card-footer">
+                    <span class="price-tag">$85</span>
+                    <a href="details-alex.html" class="details-link">استكشف المعالم <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-card" data-category="beach">
+            <div class="wishlist-heart" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+            <div class="img-container">
+                <img src="assets/img/dahab.jpeg" alt="Dahab">
+            </div>
+            <div class="card-content">
+                <div class="rating"><i class="fas fa-star"></i> 5.0</div>
+                <h3>مدينة دهب</h3>
+                <p style="color:#777; font-size: 0.85rem;">جنة الغطس في البلو هول وجلسات بدوية تحت النجوم.</p>
+                <div class="card-footer">
+                    <span class="price-tag">$150</span>
+                    <a href="details-dahab.html" class="details-link">استكشف المعالم <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-card" data-category="history">
+            <div class="wishlist-heart" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></div>
+            <div class="img-container">
+                <img src="assets/img/luxor.jpeg" alt="Luxor">
+            </div>
+            <div class="card-content">
+                <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                <h3>مدينة الأقصر</h3>
+                <p style="color:#777; font-size: 0.85rem;">أكبر متحف مفتوح في العالم: الكرنك ووادي الملوك.</p>
+                <div class="card-footer">
+                    <span class="price-tag">$210</span>
+                    <a href="details-luxor.html" class="details-link">استكشف المعالم</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <footer>
+        <p>© 2025 Booking Travel Egypt - Unified System Interface</p>
+    </footer>
+<div id="packages-container" class="packages-grid"></div>
+
+<script src="../app/controllers/js/currency.js"></script>
+<script src="../app/controllers/js/home.js"></script>
+<script src="../app/controllers/js/packages.js"></script>
+</body>
+</html>

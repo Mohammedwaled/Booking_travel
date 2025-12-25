@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشف القاهرة | Booking Travel</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/details-common.css">
+    
+    <style>
+        :root { --primary: #c0392b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: #f4f7f6; color: #333; line-height: 1.6; }
+        
+        /* الهيدر */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/cairo-hero.jpeg');
+            background-size: cover; background-position: center; height: 450px;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* كارت الداتابيز الرئيسي */
+        .db-info-card {
+            background: #fff; padding: 30px; border-right: 6px solid var(--primary);
+            margin: -60px auto 40px; position: relative; z-index: 10;
+            max-width: 1000px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title { margin: 50px 0 30px; text-align: center; color: #2d3436; font-size: 2.2rem; position: relative; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--primary); margin: 10px auto; border-radius: 2px; }
+
+        /* الجريد */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        
+        .item-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; display: flex; flex-direction: column; }
+        .item-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+        
+        .img-container { position: relative; height: 220px; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .content h3 { margin-bottom: 10px; color: #2d3436; font-size: 1.4rem; }
+        .content p { font-size: 0.95rem; color: #666; margin-bottom: 15px; }
+        
+        .price { color: var(--primary); font-weight: 800; font-size: 1.3rem; margin-top: auto; border-top: 1px solid #eee; padding-top: 15px; }
+        
+        .btn-booking { 
+            display: block; text-align: center; text-decoration: none; 
+            background: #2d3436; color: white; padding: 12px; border-radius: 8px; 
+            margin-top: 15px; font-weight: bold; transition: 0.3s; border: none; width: 100%; cursor: pointer;
+        }
+        .btn-booking:hover { background: var(--primary); }
+
+        /* قسم الآراء */
+        .reviews-section { background: white; padding: 40px; border-radius: 15px; margin: 40px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .review-card { display: flex; gap: 20px; align-items: flex-start; padding: 20px; border-bottom: 1px solid #eee; }
+        .review-card:last-child { border-bottom: none; }
+        .review-card img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #fdf2f2; }
+
+        footer { text-align: center; padding: 40px; background: #2d3436; color: white; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div>
+            <h1 id="title" style="font-size: 4rem; margin-bottom: 10px;">استكشف القاهرة</h1>
+            <p style="font-size: 1.2rem;">الوكيل المعتمد: <span id="agent" style="color: #ff9f43; font-weight: bold;">...</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="db-info-card">
+            <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-gem"></i> عرض البرنامج السياحي المعتمد</h2>
+            <p id="details" style="font-size: 1.1rem; margin-bottom: 20px; color: #444;">جاري جلب تفاصيل البرنامج...</p>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <div class="price-box">
+                    <span style="color: #777;">السعر الإجمالي يبدأ من:</span>
+                    <div style="font-size: 2.2rem; color: var(--primary); font-weight: 900;"><span id="price">--</span> ج.م</div>
+                </div>
+                
+                <form action="../app/controllers/public/index.php" method="POST" style="min-width: 250px;">
+                    <input type="hidden" name="package_id" id="pkg_id">
+                    <button type="submit" name="confirm_booking" class="btn-booking" style="background: var(--primary); font-size: 1.1rem; padding: 15px 40px; margin-top: 0;">
+                        <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <h2 class="section-title">أهم المعالم والجولات</h2>
+        <div class="grid">
+            <div class="item-card">
+                <div class="img-container"><img src="assets/img/المعز.jpeg" alt="المعز"></div>
+                <div class="content">
+                    <h3>جولة شارع المعز والحسين</h3>
+                    <p>استكشف عبق التاريخ الإسلامي في أكبر متحف مفتوح للآثار في العالم مع زيارة خان الخليلي.</p>
+                    <div class="price">500 ج.م</div>
+                    <a href="booking-confirm.html?title=جولة المعز&price=500" class="btn-booking">تفاصيل الحجز</a>
+                </div>
+            </div>
+            </div>
+
+        <h2 class="section-title">فنادق القاهرة الموصى بها</h2>
+        <div class="grid">
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?auto=compress&cs=tinysrgb&w=800" alt="1"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <h3>فندق فورسيزونز نايل بلازا</h3>
+                    <p>إطلالة بانورامية ساحرة على النيل في أرقى أحياء القاهرة.</p>
+                    <div class="price">12,500 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=فورسيزونز&price=12500" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800" alt="2"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <h3>فيرمونت نايل سيتي</h3>
+                    <p>فخامة عصرية وحمام سباحة فوق السطح يطل على النيل والأهرامات.</p>
+                    <div class="price">8,200 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=فيرمونت&price=8200" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=800" alt="3"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <h3>فندق الماسة مدينة نصر</h3>
+                    <p>موقع حيوي ممتاز بالقرب من مراكز التسوق الكبرى.</p>
+                    <div class="price">4,500 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=الماسة&price=4500" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800" alt="4"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <h3>كونراد القاهرة</h3>
+                    <p>تجربة إقامة فاخرة في قلب القاهرة مع خدمات عالمية.</p>
+                    <div class="price">7,100 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=كونراد&price=7100" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800" alt="5"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <h3>شتاينبرجر التحرير</h3>
+                    <p>موقع استراتيجي في ميدان التحرير، مثالي لمحبي وسط البلد.</p>
+                    <div class="price">5,800 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=شتاينبرجر&price=5800" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+
+            <div class="item-card">
+                <div class="img-container"><img src="https://images.pexels.com/photos/2034330/pexels-photo-2034330.jpeg?auto=compress&cs=tinysrgb&w=800" alt="6"></div>
+                <div class="content">
+                    <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <h3>سوفيتيل الجزيرة</h3>
+                    <p>موقع فريد في جزيرة الزمالك يوفر الخصوصية والهدوء وسط النيل.</p>
+                    <div class="price">9,500 ج.م <small>/ليلة</small></div>
+                    <a href="booking-confirm.html?title=سوفيتيل&price=9500" class="btn-booking">احجز الغرفة</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2 style="margin-bottom: 30px; color: #2d3436;">آراء المسافرين</h2>
+            <div class="review-card">
+                <img src="https://i.pravatar.cc/100?u=1" alt="User">
+                <div>
+                    <h4>أحمد علي</h4>
+                    <div style="color: #f1c40f; font-size: 0.8rem; margin: 5px 0;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"كانت رحلة العمر، التنظيم من خلال الموقع سهل جداً والخدمة في الفنادق فاقت التوقعات."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Booking Travel - جميع الحقوق محفوظة للقاهرة</p>
+    </footer>
+
+    <script>
+    function loadCairoInfo() {
+        const cityId = 1; 
+        document.getElementById('pkg_id').value = cityId;
+
+        fetch('../app/controllers/public/index.php/api/cities/' + cityId)
+        .then(response => response.json())
+        .then(pkg => {
+            if(pkg) {
+                document.getElementById('title').innerText = "استكشف " + pkg.title;
+                document.getElementById('agent').innerText = pkg.agent_name;
+                const price = pkg.price || 0;
+                const currency = localStorage.getItem('selectedCurrency') || 'EGP';
+                const symbol = currency === 'USD' ? '$' : 'ج.م';
+                const convertedPrice = currency === 'USD' ? (price / 50).toFixed(2) : price;
+                document.getElementById('price').innerText = convertedPrice + ' ' + symbol;
+                document.getElementById('price').setAttribute('data-price-egp', price);
+                document.getElementById('details').innerText = pkg.details;
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            document.getElementById('details').innerText = "خطأ في تحميل البيانات.";
+        });
+    }
+    window.onload = loadCairoInfo;
+    </script>
+</body>
+</html>

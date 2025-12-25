@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشف الأقصر | Booking Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/details-common.css">
+    <style>
+        :root { 
+            --primary: #d35400; /* لون برتقالي ملكي (لون المعابد) */
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/luxor-hero.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        /* إضافة ستايل بسيط لعرض بيانات الداتابيز بشكل شيك */
+        .db-info {
+            background: #fff3e0;
+            padding: 15px;
+            border-right: 5px solid var(--primary);
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div>
+            <h1 id="title" style="font-size: 3.5rem; margin-bottom: 10px;">طيبة القديمة - الأقصر</h1>
+            <p style="font-size: 1.2rem;">اكتشف ثلث آثار العالم في مدينة الشمس</p>
+            <p style="color: #ffcc80;">بواسطة الوكيل: <span id="agent">...</span></p>
+        </div>
+    </div>
+
+    <div class="db-info">
+        <h3>تفاصيل البرنامج السياحي الحالي:</h3>
+        <p id="details">جاري تحميل وصف البرنامج...</p>
+        <p>السعر الإجمالي: <span id="price" style="font-weight:bold; color:var(--primary);">--</span> ج.م</p>
+        
+        <form action="../app/controllers/public/index.php" method="POST">
+            <input type="hidden" name="package_id" id="pkg_id">
+            <button type="submit" name="confirm_booking" class="btn" style="background:var(--primary); color:white; border:none; padding:10px 20px; cursor:pointer; border-radius:5px;">
+                <i class="fas fa-calendar-check"></i> تأكيد حجز هذا البرنامج
+            </button>
+        </form>
+    </div>
+
+    <h2 class="section-title">أهم المزارات السياحية</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container">
+                <img src="assets/img/الكرنك.jpeg" alt="Karnak Temple">
+                <span class="tag">تاريخي</span>
+            </div>
+            <div class="db-info-card">
+    <h2>تفاصيل البرنامج</h2>
+    <p id="details">...</p>
+    <p>السعر: <span id="price">--</span> ج.م</p>
+
+    <form action="../app/controllers/public/index.php" method="POST">
+        <input type="hidden" name="package_id" id="pkg_id">
+        <button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>
+    </form>
+</div>
+        </div>
+
+        <div class="item-card">
+            <div class="img-container">
+                <img src="assets/img/المنطاد.jpeg" alt="Hot Air Balloon">
+                <span class="tag">مغامرة</span>
+            </div>
+            <div class="content">
+                <h3>رحلة المنطاد (البالون الطائر)</h3>
+                <p>شاهد المعابد والنيل من السماء في تجربة خيالية مع شروق الشمس.</p>
+                <span class="price">1,800 ج.م</span>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="img-container">
+                <img src="assets/img/وادي الملوك.jpeg" alt="Valley of the Kings">
+                <span class="tag">مقابر ملكية</span>
+            </div>
+            <div class="content">
+                <h3>وادي الملوك والملكات</h3>
+                <p>زيارة مقبرة توت عنخ آمون واستكشاف كنوز الفراعنة المدفونة.</p>
+                <span class="price">500 ج.م</span>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">أفخم الفنادق التاريخية</h2>
+    <div class="grid">
+        <div class="item-card">
+            <div class="img-container">
+                <img src="https://images.pexels.com/photos/2034330/pexels-photo-2034330.jpeg" alt="Winter Palace">
+            </div>
+            <div class="content">
+                <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Sofitel Winter Palace</h3>
+                <p>فندق تاريخي كلاسيكي استضاف الملكة أجاثا كريستي والملوك.</p>
+                <span class="price">11,200 ج.م <small>/ليلة</small></span>
+                <a href="booking-confirm.html" class="btn btn-hotel">احجز الآن</a>
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="img-container">
+                <img src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg" alt="Hilton Luxor">
+            </div>
+            <div class="content">
+                <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <h3>Hilton Luxor Resort & Spa</h3>
+                <p>أفضل سبا وإطلالة ساحرة على النيل مباشرة في البر الشرقي.</p>
+                <span class="price">7,400 ج.م <small>/ليلة</small></span>
+                <a href="booking-confirm.html" class="btn btn-hotel">احجز الآن</a>
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="img-container">
+                <img src="https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg" alt="Steigenberger">
+            </div>
+            <div class="content">
+                <div style="color:#f1c40f; margin-bottom: 5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                <h3>Steigenberger Nile Palace</h3>
+                <p>يقع في قلب المدينة ويوفر غرفاً واسعة تطل على جزيرة الموز.</p>
+                <span class="price">4,900 ج.م <small>/ليلة</small></span>
+<button type="submit" name="confirm_booking" class="btn" style="background: var(--primary); color: white; border: none; padding: 12px 25px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+            <i class="fas fa-check-circle"></i> تأكيد حجز البرنامج بالكامل
+        </button>            </div>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2 style="margin-bottom: 30px;">تقييمات المسافرين في الأقصر</h2>
+        <div class="review-card">
+            <h4>أحمد كمال <span style="font-weight: normal; font-size: 0.8rem; color: #888;">- قبل يومين</span></h4>
+            <p>"رحلة المنطاد في الأقصر هي أفضل شيء فعلته في حياتي! رؤية المعابد من فوق خيالية."</p>
+        </div>
+        <div class="review-card">
+            <h4>نورهان <span style="font-weight: normal; font-size: 0.8rem; color: #888;">- قبل أسبوع</span></h4>
+            <p>"فندق وينتر بالاس يجعلك تشعر أنك ملك، الخدمة ممتازة والحدائق رائعة."</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Booking Travel Egypt - دليل مدينة الأقصر</p>
+    </footer>
+
+    <script src="../app/controllers/js/currency.js"></script>
+    <script src="../app/controllers/js/city-details.js"></script>
+    <script>
+        function loadLuxorData() {
+            loadCityData(5, {
+                titleId: 'title',
+                agentId: 'agent',
+                priceId: 'price',
+                detailsId: 'details',
+                pkgId: 'pkg_id'
+            });
+        }
+        window.onload = loadLuxorData;
+    </script>
+</body>
+</html>
